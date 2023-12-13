@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "requests".
@@ -18,7 +19,7 @@ use yii\db\Expression;
  * @property string|null $created_at
  * @property string|null $updated_at
  */
-class Request extends \yii\db\ActiveRecord
+class Request extends \yii\db\ActiveRecord implements \yii\web\Linkable
 {
     const STATUS_ACTIVE = 'Active';
     const STATUS_RESOLVED = 'Resolved';
@@ -82,6 +83,13 @@ class Request extends \yii\db\ActiveRecord
         return [
             self::STATUS_ACTIVE => self::STATUS_ACTIVE_NAME,
             self::STATUS_RESOLVED => self::STATUS_RESOLVED_NAME,
+        ];
+    }
+
+    public function getLinks()
+    {
+        return [
+            'self' => Url::to(['requests/view','id'=> $this->id], true)
         ];
     }
 }

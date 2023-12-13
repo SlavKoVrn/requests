@@ -71,4 +71,10 @@ class RequestSearch extends Request
 
         return $dataProvider;
     }
+
+    public function formName()
+    {
+        return 's';
+    }
+
 }
