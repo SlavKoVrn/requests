@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'name',
             'email:email',
-            'status',
+            [
+                'filter' => Request::getStatuses(),
+                'attribute' => 'status',
+                'content' => function($model){
+                    return Request::getStatuses()[$model->status];
+                }
+            ],
             [
                 'attribute' => 'created_at',
                 'content' => function($model){
