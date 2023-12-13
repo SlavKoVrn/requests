@@ -78,6 +78,14 @@ class Request extends \yii\db\ActiveRecord implements \yii\web\Linkable
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        if ($insert){
+            $this->status = self::STATUS_ACTIVE;
+        }
+        return parent::beforeSave($insert);
+    }
+
     public static function getStatuses()
     {
         return [
