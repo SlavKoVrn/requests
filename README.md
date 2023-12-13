@@ -28,6 +28,9 @@ common/config/test-local.php
 запустить тестовый сервер:
 php -S 127.0.0.1:8080 -t frontend/web
 
+сгенерировать классы тестов:
+php vendor/bin/codecept build
+
 запустить тесты:
 php vendor/bin/codecept run frontend/tests/api/RequestsCest.php
 ```
