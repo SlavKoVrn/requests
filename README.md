@@ -10,6 +10,7 @@ password:123456
 ```
 Поиск
 ```
+http://requests.kadastrcard.ru/requests?s[status]=Active
 http://requests.kadastrcard.ru/requests?s[status]=Resolved
 ```
 Страничный вывод
@@ -19,8 +20,22 @@ http://requests.kadastrcard.ru/requests?s[status]=Resolved
 ```
 установить дополнительные компоненты:
 
-composer require codeception/module-rest
-composer require codeception/module-phpbrowser
+composer require --dev codeception/module-rest
+composer require --dev codeception/module-phpbrowser
+
+устранить ошибку:
+vendor/codeception/module-phpbrowser/src/Codeception/Module/PhpBrowser.php
+строка 124
+заменить
+    /**
+     * @var Guzzle
+     */
+    public ?AbstractBrowser $client = null;
+на
+    /**
+     * @var AbstractBrowser
+     */
+    public $client = null;
 
 настроить тестовую базу данных:
 common/config/test-local.php
